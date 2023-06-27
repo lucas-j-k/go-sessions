@@ -15,7 +15,7 @@ tasks:
         - cd ./server && go run main.go
 
     ###################################################
-    # MySQL - Docker
+    # MySQL + Redis - Docker
     ###################################################
     runsql:
         desc: Start/Restart a MySQL container in Docker
@@ -26,10 +26,6 @@ tasks:
         desc: Open a CLI into MYSQL inside Docker
         cmds:
         - docker exec -it session-mysql mysql -p
-
-    ###################################################
-    # Redis - Docker
-    ###################################################
     runredis:
         desc: Start / Restart a Redis container in Docker
         cmds:
@@ -39,6 +35,11 @@ tasks:
         desc: Open a CLI into Redis inside Docker
         cmds:
         - docker exec -it session-redis redis-cli
+    stopcontainers:
+        desc: Stop MySQL and Redis containers
+        cmds:
+        - docker stop session-mysql
+        - docker stop session-redis
 
     ###################################################
     # DB Migrations
